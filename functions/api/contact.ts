@@ -33,8 +33,8 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'BotBrained Contact <hello@botbrained.com>',
-      to: ['hello@botbrained.com'],
+      from: 'BotBrained Contact <info@botbrained.com>',
+      to: ['info@botbrained.com'],
       reply_to: phone.includes('@') ? phone : undefined,
       subject: `New enquiry from ${name}`,
       html: `
