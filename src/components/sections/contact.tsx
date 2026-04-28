@@ -23,11 +23,22 @@ export function Contact() {
     return Object.keys(e).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validate()) return
     setState('submitting')
-    setTimeout(() => setState('done'), 1400)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('Failed')
+      setState('done')
+    } catch {
+      setState('idle')
+      setErrors({ message: 'Something went wrong. Please try WhatsApp instead.' })
+    }
   }
 
   const inputBase = "w-full px-4 py-3 rounded-xl text-sm font-body text-[var(--fg)] placeholder:text-[var(--fg-subtle)] bg-[var(--bg-card)] border border-[var(--border)] focus:outline-none focus:border-bb-teal transition-colors duration-200"
@@ -67,7 +78,7 @@ export function Contact() {
             </motion.h2>
 
             <motion.p variants={fadeUp} className="text-base sm:text-lg text-[var(--fg-muted)] leading-relaxed max-w-sm">
-              Drop a message and Smaran will reply personally within 24 hours. Or skip the form entirely.
+              Drop a message and the team will reply within 24 hours. Or skip the form entirely.
             </motion.p>
 
             <motion.a
@@ -83,7 +94,7 @@ export function Contact() {
                 </svg>
               </span>
               <span className="text-sm font-semibold text-[var(--fg-muted)] group-hover:text-bb-teal transition-colors duration-200">
-                WhatsApp Smaran directly
+                WhatsApp the team directly
               </span>
               <ArrowRight size={14} className="text-[var(--fg-subtle)] group-hover:text-bb-teal group-hover:translate-x-1 transition-all duration-200" />
             </motion.a>
@@ -101,7 +112,7 @@ export function Contact() {
                 <CheckCircle2 size={48} className="text-bb-teal" strokeWidth={1.5} />
                 <h3 className="font-display font-black text-2xl text-[var(--fg)]">We&apos;ll be in touch.</h3>
                 <p className="text-[var(--fg-muted)] text-sm max-w-xs leading-relaxed">
-                  Smaran will reach out within 24 hours. Keep an eye on your WhatsApp.
+                  The team will reach out within 24 hours. Keep an eye on your WhatsApp.
                 </p>
               </div>
             ) : (
