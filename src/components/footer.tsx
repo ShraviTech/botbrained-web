@@ -8,10 +8,10 @@ import { Logo } from '@/components/logo'
 import { cn } from '@/lib/utils'
 
 const quickLinks = [
+  { label: 'Client Work', href: '/clients' },
+  { label: 'Products', href: '/products' },
+  { label: 'Knowledge Base', href: '/blog' },
   { label: 'Services', href: '#services' },
-  { label: 'Work', href: '#work' },
-  { label: 'Education', href: '#education' },
-  { label: 'Consulting', href: '#consulting' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -220,7 +220,7 @@ export function Footer() {
                 Ready to build something exceptional?
               </p>
               <a
-                href="#consulting"
+                href="#contact"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold font-body text-bb-teal hover:text-bb-teal-light transition-colors duration-200 group"
               >
                 Start a project
