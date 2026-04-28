@@ -1,0 +1,10 @@
+# Redirects from old botbrained.com (indexed pages)
+/workshops              /blog                   301
+/verify                 /                       301
+/learn/*                /blog                   301
+/admin/*                /                       301
+/auth                   /                       301
+
+# Trailing-slash normalisation (Cloudflare Pages sometimes strips slashes)
+/workshops/             /blog                   301
+/verify/                /                       301
